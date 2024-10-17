@@ -1,6 +1,7 @@
 module com.sm {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
     
     exports com.sm;
     exports com.sm.controllers;
