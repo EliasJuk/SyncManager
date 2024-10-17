@@ -1,15 +1,12 @@
 package database;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import com.sm.database.DatabaseConnection;
 
 public class testConn {
-  private Connection conn;
-
   // Método para abrir a conexão com o banco usando a classe DatabaseConn
   public void connect() throws SQLException {
-    conn = DatabaseConnection.getConnection();
+    DatabaseConnection.getConnection();
     System.out.println("Conexão aberta com sucesso.");
   }
 
