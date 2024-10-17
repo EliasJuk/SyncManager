@@ -2,8 +2,10 @@
     -fx-background-color: rgb(22, 143, 0);    
 }
 
-.textColor {
-    -fx-text-fill: #bebebe;
+.textStyle {
+    -fx-text-fill: #fefefe;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
 }
 
 .panelInfo{
