@@ -26,8 +26,6 @@ public class loginController implements Initializable{
     void loginOnAction(ActionEvent event) {
         String usuario = passwordInput.getText();
         String senha = passwordInput.getText();
-        
-        
 
     }
 
