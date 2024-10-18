@@ -1,4 +1,4 @@
-package database;
+package com.sm.test;
 
 import java.sql.SQLException;
 import com.sm.database.DatabaseConnection;

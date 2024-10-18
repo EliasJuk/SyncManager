@@ -1,4 +1,4 @@
-package database;
+package com.sm.test;
 
 import com.sm.dao.UsuarioDAO;
 import com.sm.models.Usuario;
