@@ -22,6 +22,7 @@ public class testCadCircuito {
     try {
       circuitoDAO.connect();
       circuitoDAO.createTable();
+      circuitoDAO.createTableCircuitoComponente();
       circuitoDAO.createCircuito(circuito);
       circuitoDAO.close();
     } catch (SQLException e) {
