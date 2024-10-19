@@ -1,21 +1,22 @@
 package com.sm.models.parts;
 
-import java.util.List;
+import java.util.Map;
 
 public class Circuito {
   private String nome;
   private String ctf;
-  private List<Componente> componentes;
+  // Map que armazena os componentes e suas respectivas quantidades
+  private Map<Componente, Integer> componentesQuantidade;
 
   // Construtor vazio
   public Circuito() {
   }
 
   // Construtor
-  public Circuito(String nome, String ctf, List<Componente> componentes) {
+  public Circuito(String nome, String ctf, Map<Componente, Integer> componentesQuantidade) {
     this.nome = nome;
     this.ctf = ctf;
-    this.componentes = componentes;
+    this.componentesQuantidade = componentesQuantidade;
   }
 
   // Getters e Setters
@@ -35,11 +36,11 @@ public class Circuito {
     this.ctf = ctf;
   }
 
-  public List<Componente> getComponentes() {
-    return componentes;
+  public Map<Componente, Integer> getComponentesQuantidade() {
+    return componentesQuantidade;
   }
 
-  public void setComponentes(List<Componente> componentes) {
-    this.componentes = componentes;
+  public void setComponentesQuantidade(Map<Componente, Integer> componentesQuantidade) {
+    this.componentesQuantidade = componentesQuantidade;
   }
 }
