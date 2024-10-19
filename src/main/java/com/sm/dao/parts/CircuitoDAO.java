@@ -1,8 +1,6 @@
 package com.sm.dao.parts;
 
 import java.sql.*;
-import java.util.List;
-import java.util.ArrayList;
 import com.sm.database.DatabaseConnection;
 import com.sm.models.parts.Circuito;
 import com.sm.models.parts.Componente;
@@ -25,7 +23,7 @@ public class CircuitoDAO {
     String sql = "CREATE TABLE IF NOT EXISTS circuitos ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "nome TEXT NOT NULL, "
-        + "ctf TEXT NOT NULL UNIQUE"
+        + "ctf TEXT NOT NULL"
         + ");";
 
     try (Statement stmt = conn.createStatement()) {
@@ -39,7 +37,8 @@ public class CircuitoDAO {
     String sql = "CREATE TABLE IF NOT EXISTS circuitos_componentes ("
         + "circuito_id INTEGER NOT NULL, "
         + "componente_id INTEGER NOT NULL, "
-        + "circuito_ctf TEXT NOT NULL, " // Nova coluna para armazenar o CTF do circuito
+        + "componente_ctf TEXT NOT NULL, "
+        + "circuito_ctf TEXT NOT NULL, "
         + "PRIMARY KEY (circuito_id, componente_id), "
         + "FOREIGN KEY (circuito_id) REFERENCES circuitos(id), "
         + "FOREIGN KEY (componente_id) REFERENCES componentes(id)"
@@ -51,41 +50,26 @@ public class CircuitoDAO {
     }
   }
 
-  // Método para verificar se um circuito com o mesmo CTF já existe
-  public boolean circuitoExists(String ctf) throws SQLException {
-    String sql = "SELECT id FROM circuitos WHERE ctf = ?";
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setString(1, ctf);
-      ResultSet rs = pstmt.executeQuery();
-      return rs.next(); // Retorna true se já existir um circuito com o CTF
-    }
-  }
-
   // Método para criar um circuito e seus componentes associados
   public void createCircuito(Circuito circuito) throws SQLException {
-    // Verificar se já existe um circuito com o mesmo CTF
-    if (circuitoExists(circuito.getCtf())) {
-      System.out.println("Não foi possível cadastrar. Já existe um circuito com esse CTF.");
-    } else {
-      // Inserir o circuito
-      String sqlCircuito = "INSERT INTO circuitos (nome, ctf) VALUES (?, ?)";
+    // Inserir o circuito
+    String sqlCircuito = "INSERT INTO circuitos (nome, ctf) VALUES (?, ?)";
 
-      try (PreparedStatement pstmtCircuito = conn.prepareStatement(sqlCircuito, Statement.RETURN_GENERATED_KEYS)) {
-        pstmtCircuito.setString(1, circuito.getNome());
-        pstmtCircuito.setString(2, circuito.getCtf());
-        pstmtCircuito.executeUpdate();
+    try (PreparedStatement pstmtCircuito = conn.prepareStatement(sqlCircuito, Statement.RETURN_GENERATED_KEYS)) {
+      pstmtCircuito.setString(1, circuito.getNome());
+      pstmtCircuito.setString(2, circuito.getCtf());
+      pstmtCircuito.executeUpdate();
 
-        // Obtendo o ID do circuito inserido
-        ResultSet generatedKeys = pstmtCircuito.getGeneratedKeys();
-        if (generatedKeys.next()) {
-          int circuitoId = generatedKeys.getInt(1);
+      // Obtendo o ID do circuito inserido
+      ResultSet generatedKeys = pstmtCircuito.getGeneratedKeys();
+      if (generatedKeys.next()) {
+        int circuitoId = generatedKeys.getInt(1);
 
-          // Inserir ou associar os componentes do circuito
-          for (Componente componente : circuito.getComponentes()) {
-            int componenteId = getOrCreateComponente(componente);
-            inserirComponenteNoCircuito(circuitoId, componenteId, circuito.getCtf());
-          }
-          System.out.println("Circuito cadastrado com sucesso.");
+        // Inserir ou associar os componentes do circuito
+        for (Componente componente : circuito.getComponentes()) {
+          int componenteId = getOrCreateComponente(componente);
+          // Adicionando o ctf do componente e do circuito 
+          inserirComponenteNoCircuito(circuitoId, componenteId, componente.getCtf(), circuito.getCtf());
         }
       }
     }
@@ -124,13 +108,15 @@ public class CircuitoDAO {
   }
 
   // Método para associar um componente ao circuito
-  private void inserirComponenteNoCircuito(int circuitoId, int componenteId, String circuitoCtf) throws SQLException {
-    String sql = "INSERT INTO circuitos_componentes (circuito_id, componente_id, circuito_ctf) VALUES (?, ?, ?)";
+  private void inserirComponenteNoCircuito(int circuitoId, int componenteId, String componenteCtf, String circuitoCtf)
+      throws SQLException {
+    String sql = "INSERT INTO circuitos_componentes (circuito_id, componente_id, componente_ctf, circuito_ctf) VALUES (?, ?, ?, ?)";
 
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setInt(1, circuitoId);
       pstmt.setInt(2, componenteId);
-      pstmt.setString(3, circuitoCtf); // Inserindo o CTF do circuito na tabela
+      pstmt.setString(3, componenteCtf); // Adicionando o ctf do componente
+      pstmt.setString(4, circuitoCtf); // Adicionando o ctf do circuito
       pstmt.executeUpdate();
     }
   }
