@@ -1,12 +1,14 @@
 package com.sm;
 
+import com.sm.utils.callMessage;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class Routes {
+  private final static callMessage messageHandler = new callMessage();
 
   @SuppressWarnings("exports")
   public static void Login(Class<?> clazz, Stage primaryStage) throws Exception {
@@ -19,11 +21,7 @@ public class Routes {
       primaryStage.setScene(login);
       primaryStage.show();
     } catch (Exception e) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Não foi possivel carregar a tela de Login");
-      alert.setContentText(e.getMessage());
-      alert.showAndWait();
+      messageHandler.showAlert("Erro", "Erro", "Não foi possivel carregar a tela de Login", e.getMessage());
     }
   }
 
@@ -37,11 +35,7 @@ public class Routes {
       stageMain.setTitle("");
       stageMain.show();
     } catch (Exception e) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Não foi possivel carregar a tela de principal");
-      alert.setContentText(e.getMessage());
-      alert.showAndWait();
+      messageHandler.showAlert("Erro", "Erro", "Não foi possivel carregar a tela de principal", e.getMessage());
     }
   }
 }
