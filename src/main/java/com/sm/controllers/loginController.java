@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.sm.Routes;
+import com.sm.utils.callMessage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class loginController implements Initializable {
+  private final static callMessage messageHandler = new callMessage();
 
   @FXML
   private Button btnLogin;
@@ -39,18 +41,10 @@ public class loginController implements Initializable {
       try {
         Routes.mainView(loginController.class);
       } catch (Exception e) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro");
-        alert.setHeaderText("Erro ao tentar realizar o Login");
-        alert.setContentText(e.getMessage());
-        alert.showAndWait();
+        messageHandler.showAlert("Erro", "Erro", "Erro ao tentar realizar o Login", e.getMessage());
       }
     } else {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Login ou Senha Incorreto");
-      alert.setContentText("Digite a senha novamnte");
-      alert.showAndWait();
+      messageHandler.showAlert("Erro", "Login ou Senha Incorreto", "Erro ao tentar realizar o Login", "Falha ao tentar Logar");
     }
 
   }
