@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="519.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sm.controllers.ControllerTabela">
+ <children>
+ <TableView fx:id="tableID" editable="true" layoutX="82.0" layoutY="99.0" prefHeight="334.0" prefWidth="576.0" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="99.0">
+  <columns>
+   <TableColumn fx:id="iFirstName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="106.0" text="First name" />
+   <TableColumn fx:id="iLastName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="180.0" text="Last name" />
+
+   <TableColumn fx:id="iPresenteBox" maxWidth="1.7976931348623157E308" minWidth="-1.0" text="Presente" />
+   <TableColumn fx:id="iFaltaBox" maxWidth="1.7976931348623157E308" minWidth="-1.0" text="Falta" />
+   <TableColumn fx:id="iAtestadoBox" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="78.0" text="Atestado" />
+
+   </columns>
+  </TableView>
+ </children>
+</AnchorPane>
