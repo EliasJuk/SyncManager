@@ -10,32 +10,31 @@ import javafx.stage.Stage;
 public class Routes {
   private final static callMessage messageHandler = new callMessage();
 
+  // CARREGA A TELA INICIAL DE LOGIN
   @SuppressWarnings("exports")
   public static void Login(Class<?> clazz, Stage primaryStage) throws Exception {
-    try {
-      FXMLLoader fxmlLoader = new FXMLLoader(Routes.class.getResource("/com/sm/views/viewLogin.fxml"));
-      Parent root = fxmlLoader.load();
-      Scene login = new Scene(root);
-
-      primaryStage.setTitle("Login");
-      primaryStage.setScene(login);
-      primaryStage.show();
-    } catch (Exception e) {
-      messageHandler.showAlert("Erro", "Erro", "Não foi possivel carregar a tela de Login", e.getMessage());
-    }
+    showScenes("/com/sm/views/viewLogin.fxml", "Login", primaryStage);
   }
 
+  // CARREGA A TELA PRINCIPAL DE MENUS
   public static void mainView(Class<?> clazz) throws Exception {
+    Stage stageMain = new Stage();
+    showScenes("/com/sm/views/viewMain.fxml", "Tela Principal", stageMain);
+  }
+
+  // Método utilitário para carregar e exibir uma cena
+  @SuppressWarnings("exports")
+  public static void showScenes(String fxmlPath, String title, Stage stage) {
     try {
-      Parent root = FXMLLoader.load(clazz.getResource("/com/sm/views/viewMain.fxml"));
-      Stage stageMain = new Stage();
+      FXMLLoader fxmlLoader = new FXMLLoader(Routes.class.getResource(fxmlPath));
+      Parent root = fxmlLoader.load();
       Scene scene = new Scene(root);
 
-      stageMain.setScene(scene);
-      stageMain.setTitle("");
-      stageMain.show();
+      stage.setTitle(title);
+      stage.setScene(scene);
+      stage.show();
     } catch (Exception e) {
-      messageHandler.showAlert("Erro", "Erro", "Não foi possivel carregar a tela de principal", e.getMessage());
+      messageHandler.showAlert("Erro", "Erro", "Não foi possível carregar a tela", e.getMessage());
     }
   }
 }
