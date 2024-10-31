@@ -22,6 +22,12 @@ public class Routes {
     showScenes("/com/sm/views/viewMain.fxml", "Tela Principal", stageMain);
   }
 
+  // CARREGA A TELA DE PRESENÇA
+  public static void showViewPresenca(Class<?> clazz) {
+    Stage stageMain = new Stage();
+    showScenes("/com/sm/views/Presenca/viewPresenca.fxml", "Tela Presença", stageMain);
+  }
+
   // Método utilitário para carregar e exibir uma cena
   @SuppressWarnings("exports")
   public static void showScenes(String fxmlPath, String title, Stage stage) {
