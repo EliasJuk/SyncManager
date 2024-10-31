@@ -9,35 +9,35 @@ public class Table {
   public Table(String sFirstName, String sLastName, Boolean sPresente, Boolean sFalta, Boolean sAtestado) {
     rFirstName = sFirstName;
     rLastName = sLastName;
-    presenteCheckedProperty(false).set(sPresente);
-    faltaCheckedProperty(false).set(sFalta);
-    atestadoCheckedProperty(false).set(sAtestado);
-  }
+    presenteChecked.set(sPresente);
+    faltaChecked.set(sFalta);
+    atestadoChecked.set(sAtestado);
+}
 
   private SimpleBooleanProperty presenteChecked = new SimpleBooleanProperty(false);
   private SimpleBooleanProperty faltaChecked = new SimpleBooleanProperty(false);
   private SimpleBooleanProperty atestadoChecked = new SimpleBooleanProperty(false);
 
-  public SimpleBooleanProperty presenteCheckedProperty(boolean recursion) {
-    if (recursion) {
-      faltaCheckedProperty(false).set(false);
-      atestadoCheckedProperty(false).set(false);
+  public SimpleBooleanProperty presenteCheckedProperty() {
+    if (presenteChecked.get()) {
+      faltaChecked.set(false);
+      atestadoChecked.set(false);
     }
     return presenteChecked;
   }
-
-  public SimpleBooleanProperty faltaCheckedProperty(boolean recursion) {
-    if (recursion) {
-      presenteCheckedProperty(false).set(false);
-      atestadoCheckedProperty(false).set(false);
+  
+  public SimpleBooleanProperty faltaCheckedProperty() {
+    if (faltaChecked.get()) {
+      presenteChecked.set(false);
+      atestadoChecked.set(false);
     }
     return faltaChecked;
   }
-
-  public SimpleBooleanProperty atestadoCheckedProperty(boolean recursion) {
-    if (recursion) {
-      presenteCheckedProperty(false).set(false);
-      faltaCheckedProperty(false).set(false);
+  
+  public SimpleBooleanProperty atestadoCheckedProperty() {
+    if (atestadoChecked.get()) {
+      presenteChecked.set(false);
+      faltaChecked.set(false);
     }
     return atestadoChecked;
   }

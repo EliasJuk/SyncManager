@@ -32,109 +32,18 @@ public class presencaController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     iFirstName.setCellValueFactory(new PropertyValueFactory<>("rFirstName"));
-    iLastName.setCellValueFactory(new PropertyValueFactory<Table, String>("rLastName"));
-
-    iPresenteBox.setCellValueFactory(new Callback<CellDataFeatures<Table, Boolean>, ObservableValue<Boolean>>() {
-      @Override
-      public ObservableValue<Boolean> call(CellDataFeatures<Table, Boolean> cellData) {
-        return cellData.getValue().presenteCheckedProperty(true);
-      }
-    });
+    iLastName.setCellValueFactory(new PropertyValueFactory<>("rLastName"));
+  
+    iPresenteBox.setCellValueFactory(cellData -> cellData.getValue().presenteCheckedProperty());
     iPresenteBox.setCellFactory(CheckBoxTableCell.forTableColumn(iPresenteBox));
-
-    iFaltaBox.setCellValueFactory(new Callback<CellDataFeatures<Table, Boolean>, ObservableValue<Boolean>>() {
-      @Override
-      public ObservableValue<Boolean> call(CellDataFeatures<Table, Boolean> cellData) {
-        return cellData.getValue().faltaCheckedProperty(true);
-      }
-    });
+  
+    iFaltaBox.setCellValueFactory(cellData -> cellData.getValue().faltaCheckedProperty());
     iFaltaBox.setCellFactory(CheckBoxTableCell.forTableColumn(iFaltaBox));
-
-    iAtestadoBox.setCellValueFactory(new Callback<CellDataFeatures<Table, Boolean>, ObservableValue<Boolean>>() {
-      @Override
-      public ObservableValue<Boolean> call(CellDataFeatures<Table, Boolean> cellData) {
-        return cellData.getValue().atestadoCheckedProperty(true);
-      }
-    });
+  
+    iAtestadoBox.setCellValueFactory(cellData -> cellData.getValue().atestadoCheckedProperty());
     iAtestadoBox.setCellFactory(CheckBoxTableCell.forTableColumn(iAtestadoBox));
-
-    // Lógica de atualização para seleção exclusiva das checkboxes
-    iPresenteBox.setCellFactory(column -> new CheckBoxTableCell<Table, Boolean>() {
-      private final CheckBox checkBox = new CheckBox();
-
-      @Override
-      public void updateItem(Boolean item, boolean empty) {
-        super.updateItem(item, empty);
-        if (empty || item == null) {
-          setGraphic(null);
-        } else {
-          checkBox.setSelected(item);
-          checkBox.setOnAction(e -> {
-            if (checkBox.isSelected()) {
-              getTableView().getItems().forEach(row -> {
-                row.presenteCheckedProperty(false).set(false);
-                row.faltaCheckedProperty(false).set(false);
-                row.atestadoCheckedProperty(false).set(false);
-              });
-              getTableView().getItems().get(getIndex()).presenteCheckedProperty(true).set(true);
-            }
-          });
-          setGraphic(checkBox);
-        }
-      }
-    });
-
-    iFaltaBox.setCellFactory(column -> new CheckBoxTableCell<Table, Boolean>() {
-      private final CheckBox checkBox = new CheckBox();
-
-      @Override
-      public void updateItem(Boolean item, boolean empty) {
-        super.updateItem(item, empty);
-        if (empty || item == null) {
-          setGraphic(null);
-        } else {
-          checkBox.setSelected(item);
-          checkBox.setOnAction(e -> {
-            if (checkBox.isSelected()) {
-              getTableView().getItems().forEach(row -> {
-                row.presenteCheckedProperty(false).set(false);
-                row.faltaCheckedProperty(false).set(false);
-                row.atestadoCheckedProperty(false).set(false);
-              });
-              getTableView().getItems().get(getIndex()).faltaCheckedProperty(true).set(true);
-            }
-          });
-          setGraphic(checkBox);
-        }
-      }
-    });
-
-    iAtestadoBox.setCellFactory(column -> new CheckBoxTableCell<Table, Boolean>() {
-      private final CheckBox checkBox = new CheckBox();
-
-      @Override
-      public void updateItem(Boolean item, boolean empty) {
-        super.updateItem(item, empty);
-        if (empty || item == null) {
-          setGraphic(null);
-        } else {
-          checkBox.setSelected(item);
-          checkBox.setOnAction(e -> {
-            if (checkBox.isSelected()) {
-              getTableView().getItems().forEach(row -> {
-                row.presenteCheckedProperty(false).set(false);
-                row.faltaCheckedProperty(false).set(false);
-                row.atestadoCheckedProperty(false).set(false);
-              });
-              getTableView().getItems().get(getIndex()).atestadoCheckedProperty(true).set(true);
-            }
-          });
-          setGraphic(checkBox);
-        }
-      }
-    });
-
-    // Populando a tabela
+  
+    // Populando a tabela com os dados de teste
     tableID.setItems(FXCollections.observableArrayList(
         new Table("Airi", "Matsumoto", true, false, false),
         new Table("Misaki", "Aoki", false, true, false),
