@@ -9,7 +9,6 @@ import com.sm.utils.callMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,7 +33,6 @@ public class loginController implements Initializable {
 
     if (usuario.equals("admin") && senha.equals("admin")) {
       System.out.println("Login OK");
-
       Stage stage = (Stage) btnLogin.getScene().getWindow();
       stage.close();
 
