@@ -1,14 +1,19 @@
 package com.sm.models.parts;
 
+import java.time.LocalDateTime;
+
 public class Componente {
   private int id;
   private String nome;
   private String ctf;
   private double preco;
   private String descricao;
+  private LocalDateTime createdAt;
 
   // Construtor Vazio
-  public Componente(){}
+  public Componente() {
+    this.createdAt = LocalDateTime.now();
+  }
 
   // Construtor com o ID
   public Componente(int id, String nome, String ctf, double preco, String descricao) {
@@ -17,6 +22,7 @@ public class Componente {
     this.ctf = ctf;
     this.preco = preco;
     this.descricao = descricao;
+    this.createdAt = LocalDateTime.now();
   }
 
   // Construtor sem o ID
@@ -25,6 +31,7 @@ public class Componente {
     this.ctf = ctf;
     this.preco = preco;
     this.descricao = descricao;
+    this.createdAt = LocalDateTime.now();
   }
 
   // Getters e Setters
@@ -66,5 +73,9 @@ public class Componente {
 
   public void setDescricao(String descricao) {
     this.descricao = descricao;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
   }
 }

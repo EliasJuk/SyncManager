@@ -1,7 +1,6 @@
-package com.sm.test;
+package com.sm.database.migrations.parts;
 
 import java.sql.SQLException;
-
 import com.sm.dao.parts.ComponenteDAO;
 import com.sm.models.parts.Componente;
 
@@ -20,10 +19,15 @@ public class testCadComponente {
       componente.setPreco(0.50);
       componenteDAO.createComponente(componente);
 
-      componenteDAO.close();
     } catch (SQLException e) {
       e.printStackTrace();
       System.out.println("Erro ao inserir um Componente.");
+    } finally {
+      try {
+        componenteDAO.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 }

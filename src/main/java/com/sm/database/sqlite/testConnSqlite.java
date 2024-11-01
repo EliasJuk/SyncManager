@@ -1,9 +1,8 @@
-package com.sm.test;
+package com.sm.database.sqlite;
 
 import java.sql.SQLException;
-import com.sm.database.DatabaseConnection;
 
-public class testConn {
+public class testConnSqlite {
   // Método para abrir a conexão com o banco usando a classe DatabaseConn
   public void connect() throws SQLException {
     DatabaseConnection.getConnection();
@@ -17,7 +16,7 @@ public class testConn {
   }
 
   public static void main(String[] args) {
-    testConn test = new testConn();
+    testConnSqlite test = new testConnSqlite();
 
     try {
       // Abrindo a conexão

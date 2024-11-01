@@ -1,7 +1,8 @@
-package com.sm.dao;
+package com.sm.dao.pessoas;
 
 import java.sql.*;
-import com.sm.database.DatabaseConnection;
+
+import com.sm.database.sqlite.DatabaseConnection;
 import com.sm.models.Usuario;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

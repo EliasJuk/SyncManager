@@ -1,4 +1,4 @@
-package com.sm.database;
+package com.sm.database.sqlite;
 
 import java.io.File;
 import java.net.URI;

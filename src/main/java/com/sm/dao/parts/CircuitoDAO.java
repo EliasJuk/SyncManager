@@ -3,7 +3,7 @@ package com.sm.dao.parts;
 import java.sql.*;
 import java.util.Map;
 
-import com.sm.database.DatabaseConnection;
+import com.sm.database.sqlite.DatabaseConnection;
 import com.sm.models.parts.Circuito;
 import com.sm.models.parts.Componente;
 
@@ -25,7 +25,8 @@ public class CircuitoDAO {
     String sql = "CREATE TABLE IF NOT EXISTS circuitos ("
         + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
         + "nome TEXT NOT NULL, "
-        + "ctf TEXT NOT NULL"
+        + "ctf TEXT NOT NULL, "
+        + "created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         + ");";
 
     try (Statement stmt = conn.createStatement()) {
@@ -34,7 +35,7 @@ public class CircuitoDAO {
     }
   }
 
-  // Criar tabela intermediária circuitos_componentes com a nova coluna "quantidade"
+  // Criar tabela intermediária circuitos_componentes
   public void createTableCircuitoComponente() throws SQLException {
     String sql = "CREATE TABLE IF NOT EXISTS circuitos_componentes ("
         + "circuito_id INTEGER NOT NULL, "
@@ -55,12 +56,13 @@ public class CircuitoDAO {
 
   // Método para criar um circuito e seus componentes associados
   public void createCircuito(Circuito circuito) throws SQLException {
-    // Inserir o circuito
-    String sqlCircuito = "INSERT INTO circuitos (nome, ctf) VALUES (?, ?)";
+    // Inserir o circuito com created_at
+    String sqlCircuito = "INSERT INTO circuitos (nome, ctf) VALUES (?, ?)";  //created_at + (?)
 
     try (PreparedStatement pstmtCircuito = conn.prepareStatement(sqlCircuito, Statement.RETURN_GENERATED_KEYS)) {
       pstmtCircuito.setString(1, circuito.getNome());
       pstmtCircuito.setString(2, circuito.getCtf());
+      //pstmtCircuito.setTimestamp(3, Timestamp.valueOf(circuito.getCreatedAt())); // Usando Timestamp
       pstmtCircuito.executeUpdate();
 
       // Obtendo o ID do circuito inserido
@@ -80,7 +82,8 @@ public class CircuitoDAO {
     }
   }
 
-  // Método para verificar se o componente já existe com base no CTF e, se não, criá-lo
+  // Método para verificar se o componente já existe com base no CTF e, se não,
+  // criá-lo
   private int getOrCreateComponente(Componente componente) throws SQLException {
     // Verificar se o componente já existe
     String sqlSelect = "SELECT id FROM componentes WHERE ctf = ?";
@@ -112,7 +115,8 @@ public class CircuitoDAO {
   }
 
   // Método para associar um componente ao circuito
-  private void inserirComponenteNoCircuito(int circuitoId, int componenteId, String componenteCtf, String circuitoCtf, int quantidade)
+  private void inserirComponenteNoCircuito(int circuitoId, int componenteId, String componenteCtf, String circuitoCtf,
+      int quantidade)
       throws SQLException {
     String sql = "INSERT INTO circuitos_componentes (circuito_id, componente_id, componente_ctf, circuito_ctf, quantidade) VALUES (?, ?, ?, ?, ?)";
 

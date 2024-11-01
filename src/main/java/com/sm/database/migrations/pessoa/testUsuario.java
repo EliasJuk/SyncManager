@@ -1,6 +1,6 @@
-package com.sm.test;
+package com.sm.database.migrations.pessoa;
 
-import com.sm.dao.UsuarioDAO;
+import com.sm.dao.pessoas.UsuarioDAO;
 import com.sm.models.Usuario;
 import java.sql.SQLException;
 
