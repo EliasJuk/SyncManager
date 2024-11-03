@@ -1,14 +1,11 @@
 package com.sm;
 
-import java.io.IOException;
 
 import com.sm.utils.callMessage;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Routes {
@@ -38,6 +35,12 @@ public class Routes {
     showScenes("/com/sm/views/empresa/viewBU.fxml", "BU", stageMain);
   }
 
+  // CARREGA A VIEW DE SETOR
+  public static void showViewSetor(Class<?> clazz) {
+    Stage stageMain = new Stage();
+    showScenes("/com/sm/views/empresa/viewSetor.fxml", "Setor", stageMain);
+  }
+
   // Método utilitário para carregar e exibir uma cena
   @SuppressWarnings("exports")
   public static void showScenes(String fxmlPath, String title, Stage stage) {
@@ -51,6 +54,8 @@ public class Routes {
       stage.show();
     } catch (Exception e) {
       messageHandler.showAlert("Erro", "Erro", "Não foi possível carregar a tela", e.getMessage());
+      // APENAS PARA DEBUGAR
+      //e.printStackTrace();
     }
   }
 }

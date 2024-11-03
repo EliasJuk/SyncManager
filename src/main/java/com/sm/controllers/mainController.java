@@ -19,6 +19,12 @@ public class mainController implements Initializable{
   private MenuItem miEmpresaBU;
 
   @FXML
+  private MenuItem miEmpresaFuncao;
+
+  @FXML
+  private MenuItem miEmpresaSetor;
+
+  @FXML
   void miEmpresaBuAction(ActionEvent event) {
     Routes.showViewBU(mainController.class);
   }
@@ -26,6 +32,11 @@ public class mainController implements Initializable{
   @FXML
   void miPresencaOnAction(ActionEvent event) {
     Routes.showViewPresenca(mainController.class);
+  }
+  
+  @FXML
+  void miCadSetorAction(ActionEvent event){
+    Routes.showViewSetor(mainController.class);
   }
 
   @Override
