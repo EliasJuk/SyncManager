@@ -1,31 +1,56 @@
 package com.sm;
 
+import java.io.IOException;
+
 import com.sm.utils.callMessage;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Routes {
   private final static callMessage messageHandler = new callMessage();
 
-  // CARREGA A TELA INICIAL DE LOGIN
+  // CARREGA A VIEW INICIAL DE LOGIN
   @SuppressWarnings("exports")
   public static void Login(Class<?> clazz, Stage primaryStage) throws Exception {
     showScenes("/com/sm/views/viewLogin.fxml", "Login", primaryStage);
   }
 
-  // CARREGA A TELA PRINCIPAL DE MENUS
+  // CARREGA A VIEW PRINCIPAL DE MENUS
   public static void mainView(Class<?> clazz) throws Exception {
     Stage stageMain = new Stage();
-    showScenes("/com/sm/views/viewMain.fxml", "Tela Principal", stageMain);
+    showScenes("/com/sm/views/viewMain.fxml", "Principal", stageMain);
   }
 
-  // CARREGA A TELA DE PRESENÇA
+  // CARREGA A VIEW DE PRESENÇA
   public static void showViewPresenca(Class<?> clazz) {
     Stage stageMain = new Stage();
-    showScenes("/com/sm/views/Presenca/viewPresenca.fxml", "Tela Presença", stageMain);
+    showScenes("/com/sm/views/Presenca/viewPresenca.fxml", "Presença", stageMain);
+  }
+
+  // CARREGA A VIEW DE BU
+  public static void showViewBU(Class<?> clazz) {
+    try {
+      FXMLLoader loader = new FXMLLoader(clazz.getResource("/com/sm/views/empresa/viewBU.fxml"));
+      AnchorPane newSceneRoot = loader.load();
+      Scene newScene = new Scene(newSceneRoot);
+
+      Stage newStage = new Stage();
+      newStage.setScene(newScene);
+      newStage.setTitle("");
+      newStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Erro");
+      alert.setHeaderText("Falha ao abrir a nova cena");
+      alert.setContentText("Ocorreu um erro ao carregar a cena de BU." + e.getMessage());
+      alert.showAndWait();
+    }
   }
 
   // Método utilitário para carregar e exibir uma cena
