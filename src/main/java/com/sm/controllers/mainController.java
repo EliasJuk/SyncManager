@@ -39,6 +39,11 @@ public class mainController implements Initializable{
     Routes.showViewSetor(mainController.class);
   }
 
+  @FXML
+  void miCadFuncaoAction(ActionEvent event){
+    Routes.showViewFuncao(mainController.class);
+  }
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 

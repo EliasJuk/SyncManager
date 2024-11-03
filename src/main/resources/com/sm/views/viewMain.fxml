@@ -17,6 +17,8 @@
             <Menu mnemonicParsing="false" text="Empresa">
               <items>
                 <MenuItem fx:id="miEmpresaBU" mnemonicParsing="false" onAction="#miEmpresaBuAction" text="BU" />
+                  <MenuItem fx:id="miEmpresaSetor" mnemonicParsing="false" onAction="#miCadSetorAction" text="Setor" />
+                  <MenuItem fx:id="miEmpresaFuncao" mnemonicParsing="false" onAction="#miCadFuncaoAction" text="Funcao" />
               </items>
             </Menu>
         </menus>
