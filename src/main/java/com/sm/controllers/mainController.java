@@ -16,6 +16,14 @@ public class mainController implements Initializable{
   private MenuItem munuItemPresenca;
 
   @FXML
+  private MenuItem miEmpresaBU;
+
+  @FXML
+  void miEmpresaBuAction(ActionEvent event) {
+    Routes.showViewBU(mainController.class);
+  }
+
+  @FXML
   void miPresencaOnAction(ActionEvent event) {
     Routes.showViewPresenca(mainController.class);
   }
@@ -23,5 +31,5 @@ public class mainController implements Initializable{
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-  }  
+  }
 }
