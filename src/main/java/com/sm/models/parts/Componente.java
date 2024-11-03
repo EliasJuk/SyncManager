@@ -25,6 +25,16 @@ public class Componente {
     this.createdAt = LocalDateTime.now();
   }
 
+  // Construtor com o ID e LocalDateTime
+  public Componente(int id, String nome, String ctf, double preco, String descricao, LocalDateTime createdAt) {
+    this.id = id;
+    this.nome = nome;
+    this.ctf = ctf;
+    this.preco = preco;
+    this.descricao = descricao;
+    this.createdAt = LocalDateTime.now();
+  }
+
   // Construtor sem o ID
   public Componente(String nome, String ctf, double preco, String descricao) {
     this.nome = nome;
@@ -77,5 +87,9 @@ public class Componente {
 
   public LocalDateTime getCreatedAt() {
     return createdAt;
+  }
+
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 }
