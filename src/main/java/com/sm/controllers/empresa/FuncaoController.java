@@ -12,8 +12,10 @@ import javafx.scene.control.TextField;
 
 import com.sm.dao.sqlite.empresa.FuncaoDAO;
 import com.sm.models.empresa.Funcao;
+import com.sm.utils.callMessage;
 
 public class FuncaoController implements Initializable {
+  private final static callMessage messageHandler = new callMessage();
 
   @FXML
   private Button btnSalvar;
@@ -35,23 +37,14 @@ public class FuncaoController implements Initializable {
       funcaoDAO.close();
 
       // Exibe um alerta de sucesso
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Sucesso");
-      alert.setHeaderText("Cadastro realizado");
-      alert.setContentText("A Funcao foi cadastrada com sucesso.");
-      alert.showAndWait();
+      messageHandler.showAlert(Alert.AlertType.ERROR, "Sucesso", "Cadastro realizado", 
+      "\"A Funcao foi cadastrada com sucesso.");
     } catch (Exception e) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Erro");
-			alert.setHeaderText("Falha ao cadastrar");
-			alert.setContentText("Ocorreu um erro ao cadastrar a Funcao." + e.getMessage());
-			alert.showAndWait();
+      messageHandler.showAlert(Alert.AlertType.ERROR, "Erro", "Falha ao cadastrar", 
+      "\"Ocorreu um erro ao cadastrar a Funcao." + e.getMessage());
     }
-
   }
 
   @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    //
-  }
+  public void initialize(URL location, ResourceBundle resources) { }
 }
