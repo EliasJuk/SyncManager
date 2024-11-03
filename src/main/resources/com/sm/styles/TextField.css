@@ -1,0 +1,27 @@
+/* TEXTFIELD */
+.text-field {
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #333333;
+  -fx-font-size: 12px;
+  -fx-padding: 4px 5px;
+  -fx-background-radius: 4px;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-pref-height: 20px;
+}
+
+.text-field:hover {
+  -fx-border-color: #999999;
+}
+
+.text-field:focused {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #66aaff;
+  -fx-border-width: 1.5px;
+}
+
+.text-field:disabled {
+  -fx-opacity: 0.5;
+  -fx-background-color: #f5f5f5;
+  -fx-border-color: #cccccc;
+}

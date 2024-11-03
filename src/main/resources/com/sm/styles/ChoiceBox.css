@@ -1,0 +1,27 @@
+/* CHOICEBOX */
+.choice-box {
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #333333;
+  -fx-font-size: 12px;
+  -fx-padding: 2px 5px;
+  -fx-background-radius: 4px;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-pref-height: 23px;
+}
+
+.choice-box:hover {
+  -fx-border-color: #999999;
+}
+
+.choice-box:focused {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #66aaff; 
+  -fx-border-width: 1.5px;
+}
+
+.choice-box:disabled {
+  -fx-opacity: 0.5;
+  -fx-background-color: #f5f5f5;
+  -fx-border-color: #cccccc;
+}
