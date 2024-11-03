@@ -1,6 +1,7 @@
-package com.sm.database.migrations.parts;
+package com.sm.migrations.parts;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,8 @@ public class testCadCircuito {
 		componentesQuantidade.put(componente2, 5); // 5 capacitores
 
 		// Criar o circuito com os componentes e suas quantidades
-		Circuito circuito = new Circuito("Circuito Eletrônico", "CTF10041", componentesQuantidade);
+		//Circuito circuito = new Circuito("Circuito Eletrônico", "CTF10041", componentesQuantidade);
+		Circuito circuito = new Circuito("Circuito Eletrônico", "CTF10041", componentesQuantidade, LocalDateTime.now());
 
 		// Instanciar os DAOs
 		CircuitoDAO circuitoDAO = new CircuitoDAO();

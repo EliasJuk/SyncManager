@@ -1,4 +1,4 @@
-package com.sm.database.migrations.pessoa;
+package com.sm.migrations.pessoa;
 
 import com.sm.dao.pessoas.UsuarioDAO;
 import com.sm.models.Usuario;
