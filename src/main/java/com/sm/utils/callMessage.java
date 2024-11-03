@@ -19,4 +19,13 @@ public class callMessage {
     alert.setContentText(context + " " + message);
     alert.showAndWait();
   }
+
+  // INFORMATION - WARNING - CONFIRMATION - ERROR
+  public void showAlert(Alert.AlertType type, String title, String header, String message) {
+    Alert alert = new Alert(type);
+    alert.setTitle(title);
+    alert.setHeaderText(header);
+    alert.setContentText(message);
+    alert.showAndWait();
+  }
 }
