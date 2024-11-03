@@ -1,10 +1,10 @@
-package com.sm.dao.parts;
+package com.sm.dao.postgre.parts;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sm.database.sqlite.DatabaseConnection;
+import com.sm.database.postgre.PostgreConn;
 import com.sm.models.parts.Componente;
 
 public class ComponenteDAO {
@@ -12,7 +12,7 @@ public class ComponenteDAO {
 
   // Método para abrir a conexão
   public void connect() throws SQLException {
-    conn = DatabaseConnection.getConnection();
+    conn = PostgreConn.getConnection();
   }
 
   // Método para fechar a conexão
@@ -25,12 +25,12 @@ public class ComponenteDAO {
   // Criar tabela de componentes
   public void createTable() throws SQLException {
     String sql = "CREATE TABLE IF NOT EXISTS componentes ("
-        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "id SERIAL PRIMARY KEY, " // Altera AUTOINCREMENT para SERIAL
         + "nome TEXT NOT NULL, "
         + "ctf TEXT NOT NULL UNIQUE, "
         + "preco REAL NOT NULL, "
         + "descricao TEXT, "
-        + "created_at TIMESTAMP NOT NULL"
+        + "created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" // Define valor padrão
         + ");";
 
     try (Statement stmt = conn.createStatement()) {
@@ -55,6 +55,7 @@ public class ComponenteDAO {
       System.out.println("Não foi possível cadastrar. Esse CTF já existe.");
     } else {
       String sql = "INSERT INTO componentes (nome, ctf, preco, descricao, created_at) VALUES (?, ?, ?, ?, ?)";
+
       try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setString(1, componente.getNome());
         pstmt.setString(2, componente.getCtf());
@@ -91,5 +92,4 @@ public class ComponenteDAO {
     }
     return componentes;
   }
-
 }

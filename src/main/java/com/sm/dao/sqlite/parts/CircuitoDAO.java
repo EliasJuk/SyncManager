@@ -1,4 +1,4 @@
-package com.sm.dao.parts;
+package com.sm.dao.sqlite.parts;
 
 import java.sql.*;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.sm.dao.pessoas;
+package com.sm.dao.sqlite.pessoas;
 
 import java.sql.*;
 
