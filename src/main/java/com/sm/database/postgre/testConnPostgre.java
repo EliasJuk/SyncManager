@@ -6,9 +6,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class testConnPostgre {
+  // Método para abrir a conexão com o banco usando a classe PostgreConn
+  public void connect() throws SQLException {
+    PostgreConn.getConnection();
+    System.out.println("Conexão com PostgreSQL aberta com sucesso.");
+  }
+
+  // Método para fechar a conexão usando a classe PostgreConn
+  public void close() throws SQLException {
+    PostgreConn.closeConnection();
+    System.out.println("Conexão com PostgreSQL fechada com sucesso.");
+  }
+
   public static void main(String[] args) {
+    testConnPostgre test = new testConnPostgre();
+
     try {
-      // Abre a conexão com o banco de dados
+      // Abrindo a conexão
+      test.connect();
+
+      // Obtém a conexão para usar em operações SQL
       Connection conn = PostgreConn.getConnection();
 
       // Cria um Statement para executar comandos SQL
@@ -40,11 +57,15 @@ public class testConnPostgre {
       rs.close();
       stmt.close();
 
-      // Fecha a conexão com o banco de dados
-      PostgreConn.closeConnection();
-
     } catch (SQLException e) {
       System.out.println("Erro ao acessar o banco de dados: " + e.getMessage());
+    } finally {
+      try {
+        // Fechando a conexão
+        test.close();
+      } catch (SQLException e) {
+        System.err.println("Erro ao fechar a conexão: " + e.getMessage());
+      }
     }
   }
 }
