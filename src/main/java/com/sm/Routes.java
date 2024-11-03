@@ -41,6 +41,12 @@ public class Routes {
     showScenes("/com/sm/views/empresa/viewSetor.fxml", "Setor", stageMain);
   }
 
+  // CARREGA A VIEW DE FUNÇÕES
+  public static void showViewFuncao(Class<?> clazz) {
+    Stage stageMain = new Stage();
+    showScenes("/com/sm/views/empresa/viewFuncao.fxml", "Funcao", stageMain);
+  }
+
   // Método utilitário para carregar e exibir uma cena
   @SuppressWarnings("exports")
   public static void showScenes(String fxmlPath, String title, Stage stage) {
