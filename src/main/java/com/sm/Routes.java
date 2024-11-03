@@ -34,23 +34,8 @@ public class Routes {
 
   // CARREGA A VIEW DE BU
   public static void showViewBU(Class<?> clazz) {
-    try {
-      FXMLLoader loader = new FXMLLoader(clazz.getResource("/com/sm/views/empresa/viewBU.fxml"));
-      AnchorPane newSceneRoot = loader.load();
-      Scene newScene = new Scene(newSceneRoot);
-
-      Stage newStage = new Stage();
-      newStage.setScene(newScene);
-      newStage.setTitle("");
-      newStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Erro");
-      alert.setHeaderText("Falha ao abrir a nova cena");
-      alert.setContentText("Ocorreu um erro ao carregar a cena de BU." + e.getMessage());
-      alert.showAndWait();
-    }
+    Stage stageMain = new Stage();
+    showScenes("/com/sm/views/empresa/viewBU.fxml", "BU", stageMain);
   }
 
   // Método utilitário para carregar e exibir uma cena
