@@ -12,6 +12,7 @@
             <Menu mnemonicParsing="false" text="Colaboradores">
               <items>
                 <MenuItem fx:id="munuItemPresenca" mnemonicParsing="false" onAction="#miPresencaOnAction" text="Presenca" />
+                  <MenuItem fx:id="miCadColaboradores" mnemonicParsing="false" onAction="#miCadColaboradoresAction" text="Cad. Colaboradores" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Empresa">
