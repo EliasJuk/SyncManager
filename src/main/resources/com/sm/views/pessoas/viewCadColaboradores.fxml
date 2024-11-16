@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="671.0" stylesheets="@estilo.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sm.controllers.colaboradores.CadColaboradoresController">
+  <children>
+      <TextField fx:id="colaboradorCadNome" layoutX="44.0" layoutY="71.0" prefHeight="25.0" prefWidth="365.0" />
+      <Label layoutX="44.0" layoutY="54.0" text="Nome" />
+      <DatePicker fx:id="colaboradorCadNasc" layoutX="443.0" layoutY="71.0" prefHeight="25.0" prefWidth="192.0" />
+      <Label layoutX="447.0" layoutY="54.0" text="Data Nascimento" />
+      <TextField fx:id="colaboradorCadMatricula" layoutX="44.0" layoutY="140.0" prefHeight="25.0" prefWidth="156.0" />
+      <Label layoutX="44.0" layoutY="123.0" text="Matricula" />
+      <TextField fx:id="colaboradorCadTel" layoutX="216.0" layoutY="140.0" prefHeight="25.0" prefWidth="192.0" />
+      <Label layoutX="218.0" layoutY="123.0" text="Telefone" />
+      <TextField fx:id="colaboradorCadTelR" layoutX="443.0" layoutY="140.0" prefHeight="25.0" prefWidth="192.0" />
+      <Label layoutX="447.0" layoutY="123.0" text="Telefone Recado" />
+      <TextField fx:id="colaboradorCadEndereco" layoutX="44.0" layoutY="203.0" prefHeight="25.0" prefWidth="365.0" />
+      <Label layoutX="44.0" layoutY="186.0" text="Endereço" />
+      <Label layoutX="447.0" layoutY="186.0" text="CEP" />
+      <TextField fx:id="colaboradorCadCEP" layoutX="443.0" layoutY="203.0" prefHeight="25.0" prefWidth="192.0" />
+      <ChoiceBox fx:id="colaboradorCadBU" layoutX="44.0" layoutY="265.0" prefHeight="27.0" prefWidth="171.0" />
+      <Label layoutX="44.0" layoutY="248.0" text="BU" />
+      <ChoiceBox fx:id="colaboradorCadSetor" layoutX="241.0" layoutY="265.0" prefHeight="17.0" prefWidth="171.0" />
+      <Label layoutX="241.0" layoutY="248.0" text="Setor" />
+      <ChoiceBox fx:id="colaboradorCadFuncao" layoutX="443.0" layoutY="265.0" prefHeight="31.0" prefWidth="192.0" />
+      <Label layoutX="447.0" layoutY="248.0" text="Função" />
+      <Button id="myRaisedButton" fx:id="btnColaboradorCadSalvar" layoutX="193.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnCadColaborador" prefHeight="31.0" prefWidth="102.0" stylesheets="@button.css" text="SALVAR" />
+      <Button id="myRaisedButton" fx:id="btnColaboradorCadCancelar" layoutX="330.0" layoutY="335.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="102.0" text="CANCELAR" />
+  </children>
+</AnchorPane>
