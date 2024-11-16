@@ -1,12 +1,14 @@
-package com.sm.utils;
+package com.sm.models;
 
 import javafx.beans.property.*;
 
 public class Table {
+  private String rMatricula;
   private String rFirstName;
   private String rLastName;
 
-  public Table(String sFirstName, String sLastName, Boolean sPresente, Boolean sFalta, Boolean sAtestado) {
+  public Table(String sMatricula, String sFirstName, String sLastName, Boolean sPresente, Boolean sFalta, Boolean sAtestado) {
+    rMatricula = sMatricula;
     rFirstName = sFirstName;
     rLastName = sLastName;
     presenteChecked.set(sPresente);
@@ -48,5 +50,9 @@ public class Table {
 
   public String getRLastName() {
     return rLastName;
+  }
+
+  public String getRMatricula() {
+    return rMatricula;
   }
 }
