@@ -25,6 +25,9 @@ public class mainController implements Initializable{
   private MenuItem miEmpresaSetor;
 
   @FXML
+  private MenuItem miCadColaboradores;
+
+  @FXML
   void miEmpresaBuAction(ActionEvent event) {
     Routes.showViewBU(mainController.class);
   }
@@ -43,6 +46,12 @@ public class mainController implements Initializable{
   void miCadFuncaoAction(ActionEvent event){
     Routes.showViewFuncao(mainController.class);
   }
+
+  @FXML
+  void miCadColaboradoresAction(ActionEvent event) {
+    Routes.showViewCadColadorador(mainController.class);
+  }
+  
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
