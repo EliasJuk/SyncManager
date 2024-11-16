@@ -16,7 +16,8 @@ public class App extends Application {
     Routes.Login(getClass(), primaryStage);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException {    
+    initTable();
     launch(args);
   }
 
@@ -26,12 +27,33 @@ public class App extends Application {
     BUDAO objBudao = new BUDAO();
     SetorDAO objSetorDAO = new SetorDAO();
     FuncaoDAO objFuncaoDAO = new FuncaoDAO();
+    
+    try {
+      objBudao.connect();
+      objBudao.createTable();
+      objBudao.close();
+      
+      objSetorDAO.connect();
+      objSetorDAO.createTable();
+      objSetorDAO.close();
 
-    objComponenteDAO.createTable();
-    objCircuitoDAO.createTable();
-    objFuncaoDAO.createTable();
-    objBudao.createTable();
-    objSetorDAO.createTable();
-    objFuncaoDAO.createTable();
+      objFuncaoDAO.connect();
+      objFuncaoDAO.createTable();
+      objFuncaoDAO.close();
+
+      objComponenteDAO.connect();
+      objComponenteDAO.createTable();
+      objComponenteDAO.close();
+
+      objCircuitoDAO.connect();
+      objCircuitoDAO.createTable();
+      objCircuitoDAO.close();
+
+      objFuncaoDAO.connect();
+      objFuncaoDAO.createTable();
+      objFuncaoDAO.close();
+    } catch (Exception e) {
+      //System.err.println("Erro: " + e.getMessage());
+    }
   }
 }
